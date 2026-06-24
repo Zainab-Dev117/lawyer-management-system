@@ -1,20 +1,30 @@
+
 <?php
 ob_start();
 ob_flush();
+
 include("../connection.php");
 include("header.php"); 
+?>
+
+<?php 
+
+$ID = $_GET['id'];
+$query = " SELECT * FROM `services` WHERE service_id = '$ID' ";
+$rowData = mysqli_query($conn,$query);
+$data = mysqli_fetch_assoc($rowData);
 
 if(isset($_POST['btnAdd'])){
-    $name= $_POST['s-name'];
-    $query= "INSERT INTO `services`(`service_name`,`is_update`) VALUES ('$name','No')";
-    $result= mysqli_query($conn,$query);
+    $name = $_POST['s-name'];
+
+    $query = "UPDATE services set service_name = '$name', is_update = 'Yes' where service_id= '$ID'";
+    $update = mysqli_query($conn,$query);
 
     header("Location: show-services.php");
 }
-?>
 
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+?>
 
 
     <div class="container">
@@ -26,16 +36,16 @@ if(isset($_POST['btnAdd'])){
                     <div class="col-lg-12">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Add New Service!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Update Service!</h1>
                             </div>
                             <form class="user" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Service Name" name="s-name">
+                                            placeholder="Service Name" name="s-name" value="<?php echo $data['service_name'] ?>">
                                     </div>
                                 </div>
-                                <input type="submit" value="Add Service" class="btn btn-primary btn-user btn-block" name="btnAdd">
+                                <input type="submit" value="Update Service" class="btn btn-primary btn-user btn-block" name="btnAdd">
                                 <hr>
                             </form>
 

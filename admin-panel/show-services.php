@@ -33,12 +33,13 @@ $allResult = mysqli_fetch_all($result,MYSQLI_ASSOC);
                                         <tr>
                                             <th>Service ID</th>
                                             <th>Service Name</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
                                          <?php foreach( $allResult as $record){ 
                                          ?>
+                                        <tr>
 
                                             <td>
                                                 <?php 
@@ -50,7 +51,30 @@ $allResult = mysqli_fetch_all($result,MYSQLI_ASSOC);
                                                 echo $record['service_name'] 
                                                 ?>
                                             </td>
-
+                                            <td>
+                                             <?php 
+                                              if( $record['is_update'] == "Yes"){                                            
+                                             ?>
+                                                <a href="delete-service.php?id= <?php echo $record['service_id'] ?>">
+                                                    <button class="btn btn-primary" >
+                                                         <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </a>
+                                             <?php }else{ ?>
+                                                <a href="edit-services.php?id= <?php echo $record['service_id'] ?>">
+                                                    <button class="btn btn-warning">
+                                                         <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>
+                                        
+                                                <a href="delete-service.php?id= <?php echo $record['service_id'] ?>">
+                                                    <button class="btn btn-primary" >
+                                                         <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </a>
+                                             <?php } ?>    
+                                                
+                                            </td>
                                          <?php 
                                             } 
                                          ?>

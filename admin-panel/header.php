@@ -72,8 +72,8 @@
                         <h6 class="collapse-header">Categories</h6>
                         <a class="collapse-item" href="add-service.php">Add new Service</a>
                         <a class="collapse-item" href="show-services.php">Show all Service </a>
-                        <a class="collapse-item" href="update-services.php">Update Services </a>
-                        <a class="collapse-item" href="delete-services.php">Delete Service </a>
+                        <a class="collapse-item" href="edit-services.php">Update Services </a>
+                        <a class="collapse-item" href="delete-service.php">Delete Service </a>
                     </div>
                 </div>
             </li>
