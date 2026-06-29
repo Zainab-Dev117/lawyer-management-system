@@ -14,14 +14,40 @@ $query = " SELECT * FROM `services` WHERE service_id = '$ID' ";
 $rowData = mysqli_query($conn,$query);
 $data = mysqli_fetch_assoc($rowData);
 
-if(isset($_POST['btnAdd'])){
+
+if($data['is_update']== "No"){
+
+ if(isset($_POST['btnAdd'])){
+
     $name = $_POST['s-name'];
 
     $query = "UPDATE services set service_name = '$name', is_update = 'Yes' where service_id= '$ID'";
     $update = mysqli_query($conn,$query);
 
     header("Location: show-services.php");
+
+ }
+
+
+}else{
+    
+    echo '<script>
+        alert("You cannot edit twice")
+        window.location.href= "show-services.php"
+    </script>';
+    
+
 }
+
+
+// if(isset($_POST['btnAdd'])){
+//     $name = $_POST['s-name'];
+
+//     $query = "UPDATE services set service_name = '$name', is_update = 'Yes' where service_id= '$ID'";
+//     $update = mysqli_query($conn,$query);
+
+//     header("Location: show-services.php");
+// }
 
 
 ?>
